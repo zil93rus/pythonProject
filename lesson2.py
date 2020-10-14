@@ -7,7 +7,7 @@
 # с индексами 0 и 1, 2 и 3 и т.д. При нечетном количестве элементов последний сохранить на своем месте.
 # Для заполнения списка элементов необходимо использовать функцию input().
 
-'''
+"""
 ls = []
 for i in range(21):
     ls.append(i)
@@ -16,12 +16,12 @@ for i in range(int(len(ls) / 2)):
     ls[pos], ls[pos + 1] = ls[pos + 1], ls[pos]
     pos += 2
 print(ls)
-'''
+"""
 
 # 3. Пользователь вводит месяц в виде целого числа от 1 до 12. Сообщить к какому времени года относится месяц
 # (зима, весна, лето, осень). Напишите решения через list и через dict.
 
-'''
+"""
 user_month = int(input("Please enter the month: "))
 month = {
     1: 'January',
@@ -50,20 +50,20 @@ elif user_month in summer:
     print(f"Your month {user_month} is summer")
 else:
     print(f"Your month {user_month} is autumn")
-'''
+"""
 
 # 4. Пользователь вводит строку из нескольких слов, разделённых пробелами. Вывести каждое слово с новой строки.
 # Строки необходимо пронумеровать. Если в слово длинное, выводить только первые 10 букв в слове.
 
-
-# user_input = input("enter a string of multiple words separated by spaces: ")
-# ls = user_input.split(" ")
-# for i in ls:
-#     if len(i) > 10:
-#         print(f"{i[:10]}")
-#     else:
-#         print(i)
-
+"""
+user_input = input("enter a string of multiple words separated by spaces: ")
+ls = user_input.split(" ")
+for i in ls:
+    if len(i) > 10:
+        print(f"{i[:10]}")
+    else:
+        print(i)
+"""
 
 # 5. Реализовать структуру «Рейтинг», представляющую собой не возрастающий набор натуральных чисел.
 # У пользователя необходимо запрашивать новый элемент рейтинга. Если в рейтинге существуют элементы с одинаковыми
@@ -74,35 +74,37 @@ else:
 # Пользователь ввел число 1. Результат: 7, 5, 3, 3, 2, 1.
 # Набор натуральных чисел можно задать непосредственно в коде, например, my_list = [7, 5, 3, 3, 2].
 
+"""
+my_list = [7, 5, 3, 3, 2]
+user_int = int(input("Enter the number: "))
+if user_int not in my_list:
+    for i in my_list:
+        if i == user_int - 1:
+            my_list.insert(my_list.index(i), user_int)
+            break
+        elif i < user_int:
+            my_list.insert(my_list.index(i), user_int)
+            break
+        else:
+            if my_list[-1] > user_int:
+                my_list.append(user_int)
+elif user_int in my_list:
+    num_pos = my_list.index(user_int)
+    num_count = my_list.count(user_int)
+    my_list.insert(num_pos + (num_count - 1), user_int)
+print(my_list)
+"""
 
-# my_list = [7, 5, 3, 3, 2]
-# user_int = int(input("Enter the number: "))
-# if user_int not in my_list:
-#     for i in my_list:
-#         if i == user_int - 1:
-#             my_list.insert(my_list.index(i), user_int)
-#             break
-#         elif i < user_int:
-#             my_list.insert(my_list.index(i), user_int)
-#             break
-#         else:
-#             if my_list[-1] > user_int:
-#                 my_list.append(user_int)
-# elif user_int in my_list:
-#     num_pos = my_list.index(user_int)
-#     num_count = my_list.count(user_int)
-#     my_list.insert(num_pos + (num_count - 1), user_int)
-# print(my_list)
-
-
-# my_list = [7, 5, 3, 3, 2]
-# user_int = int(input("Enter the number: "))
-# i = 0
-# for ls in my_list:
-#     if user_int <= ls:
-#         i += 1
-# my_list.insert(i, user_int)
-# print(my_list)
+"""
+my_list = [7, 5, 3, 3, 2]
+user_int = int(input("Enter the number: "))
+i = 0
+for ls in my_list:
+    if user_int <= ls:
+        i += 1
+my_list.insert(i, user_int)
+print(my_list)
+"""
 
 # 6. * Реализовать структуру данных «Товары». Она должна представлять собой список кортежей.
 # Каждый кортеж хранит информацию об отдельном товаре. В кортеже должно быть два элемента — номер товара и словарь
@@ -124,24 +126,23 @@ else:
 # “ед”: [“шт.”]
 # }
 
+"""
 goods = []
 features = {"название": " ", "цена": " ", "количество": " ", "eд": " "}
 analytics = {"название": [], "цена": [], "количество": [], "eд": []}
 
-num = 0
+count = 0
 while True:
-    if input("Нажмите Q, если хотите выйти. Для продолжения нажмите Enter:").upper() == "Q":
+    if input("Для продолжения нажмите Enter. Чтобы выйти введите Q: ").upper() == "Q":
         break
-    num += 1
+    count += 1
     for i in features.keys():
-        user_answer = input(f"Заполните данные - {i}: ")
-        try:
-            features[i] = int(user_answer) if (i == "цена" or i == "количество") else user_answer
-        except ValueError:
-            print("error")
-
+        user_input = input(f"Заполните данные. {i.title()} - ")
+        features[i] = user_input
         analytics[i].append(features[i])
-    goods.append((num, features))
-print(goods)
-print(features)
-print(analytics)
+    goods.append((count, features))
+for i in goods:
+    print(i)
+for key, value in analytics.items():
+    print(f"{key.title()} - {value}")
+"""
