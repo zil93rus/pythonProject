@@ -18,31 +18,27 @@ print(abc())
 # Реализовать вывод данных о пользователе одной строкой.
 
 
-# def userdata():
-#     dict = {"имя": "", "фамилия": "", "год рождения": "", "город": "", "email": "", "телефон": ""}
-#     for i in dict.keys():
-#         user_input = input(f"{i.title()} - ")
-#         dict[i] = user_input
-#     return print(" ".join(dict.values()))
+def userdata():
+    dict = {"имя": "", "фамилия": "", "год рождения": "", "город": "", "email": "", "телефон": ""}
+    for i in dict.keys():
+        user_input = input(f"{i.title()} - ")
+        dict[i] = user_input
+    return (" ".join(dict.values()))
+print(userdata())
 
 def userdata2(**owner):
-    return print(" ".join(owner.values()))
+    return (" ".join(owner.values()))
 
-userdata2(name = "Vladimir",
-          surname = "Zelov",
-          year = "10.11.1985",
-          city = "Moscow",
-          email = "abra@kadab.ra",
-          phone = "9267776369")
+print(userdata2(name = "Vasya", surname = "Ivanov", year = "10.11.1985", city = "Moscow", email = "abra@kadab.ra", phone = "+7999999999"))
 
 
 # 3. Реализовать функцию my_func(), которая принимает три позиционных аргумента,
 # и возвращает сумму наибольших двух аргументов.
 
 def my_func(a, b, c):
-    return print((a + b + c) - min(a, b, c))
+    return (a + b + c) - min(a, b, c)
 
-my_func(100,2,50)
+print(my_func(100,2,50))
 
 
 # 4. Программа принимает действительное положительное число x и целое отрицательное число y.
@@ -78,23 +74,23 @@ def my_func():
     total = 0
     while True:
         ls = input("Please enter the numbers. For exit press Q: ").split()
-
         for i, el in enumerate(ls):
-            if el == "q" or el == "Q":
+            if el == "Q" or el == "q":
                 while i < len(ls):
                     ls.pop(i)
-                return f"Sum = {sum(ls)}. Total sum = {sum(ls) + total}"
+                return f"Sum = {sum(ls)}. Total sum = {total + sum(ls)}"
             else:
                 try:
                     ls[i] = int(el)
                 except ValueError:
                     ls.remove(el)
                     ls.insert(i, 0)
-
-        print(f"Sum = {sum(ls)}. Total sum = {sum(ls) + total}")
+        print(f"Sum = {sum(ls)}. Total sum = {total + sum(ls)}")
         total += sum(ls)
 
 print(my_func())
+
+
 
 
 # 6. Реализовать функцию int_func(), принимающую слово из маленьких латинских букв и возвращающую его же,
